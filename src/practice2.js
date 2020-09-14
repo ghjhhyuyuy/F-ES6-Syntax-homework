@@ -1,12 +1,10 @@
 const inject = (items,sections) =>{
     let indexBefore = 0;
-    sections.map(section => {let { content: value, index: index } = section;
-        if(index>indexBefore){
-            items.splice(index+1,0,value);
-            indexBefore = index;
-        }else{
-            items.splice(index,0,value);
-        }})
+    let i = 0;
+    sections.sort((a,b) => a.index - b.index).map(section => {let { content: value, index: index } = section;
+        items.splice(index+i,0,value);
+        i++;
+    })
     return items;
 }
 export { inject };
